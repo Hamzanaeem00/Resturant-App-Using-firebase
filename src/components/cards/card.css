@@ -1,0 +1,10 @@
+.mycard{
+    box-shadow: 0 .125rem .25rem 0 rgba(58,59,69,.2);
+    border-radius: 6px;
+    text-align: center;
+    /* width: 15%; */
+}
+.iconColor{
+    color: #b80624;
+    font-size: 12px;
+}

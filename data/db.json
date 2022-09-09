@@ -1,0 +1,41 @@
+
+{
+    "DUMMY_DATA": [
+        {
+          "id": 1,
+          "image":  "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=1060&t=st=1662022856~exp=1662023456~hmac=5c449d2b949f463ce50997d49fbf7455b8dd72fa393ca7a305acf7190dcd90b7",
+          "itemName": "Spicy Pizza",
+          "itemType": "Free delivery"
+        },
+        {
+            "id": 2,
+            "image":  "https://img.freepik.com/free-photo/front-view-burgers-stand_141793-15545.jpg?w=1060&t=st=1662022502~exp=1662023102~hmac=1783a231f39b468202dbed441cfad59de134a21376cb11716ee9ddfe75cf0c1a",
+            "itemName": "Special Burger",
+            "itemType": "Free delivery"
+          },
+          {
+            "id": 3,
+            "image":  "https://img.freepik.com/premium-photo/chef-cook-fries-meat-beef-steak-open-fire-restaurant_127425-660.jpg?w=1060",
+            "itemName": "Tandoori",
+            "itemType": "Free delivery"
+          },
+          {
+            "id": 4,
+            "image":  "https://img.freepik.com/premium-photo/special-small-cuisine-thali_57665-14947.jpg?w=1060",
+            "itemName": "Special Thali",
+            "itemType": "Free delivery"
+          },
+          {
+            "id": 5,
+            "image":  "https://img.freepik.com/free-photo/grilled-chicken-breast-fresh-vegetable-salad-tomatoes-cucumbers-lettuce-leaves-chicken-salad-healthy-food-flat-lay-top-view_2829-4244.jpg?w=1060&t=st=1662022685~exp=1662023285~hmac=228ffc1747e0804cde2a9d6603edebdee498853dc2b13581d2917996e8b92dfd",
+            "itemName": "Diet Food",
+            "itemType": "Free delivery"
+          },
+          {
+            "id": 6,
+            "image":  "https://img.freepik.com/free-photo/club-sandwich-with-side-french-fries_140725-1744.jpg?w=1060&t=st=1662022746~exp=1662023346~hmac=b530422da0fa5e8ebed39eeef3f314cb33b8bd783a561a089d401c17a2220a65",
+            "itemName": "Sandwich",
+            "itemType": "Free delivery"
+          }
+        ]
+    }

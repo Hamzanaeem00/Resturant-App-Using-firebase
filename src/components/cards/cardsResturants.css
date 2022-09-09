@@ -1,0 +1,22 @@
+.myCard{
+    box-shadow: 0 .125rem .25rem 0 rgba(58,59,69,.2);
+    border-radius: 6px;
+}
+.maintitle{
+   font-size: 15px;
+  
+}
+.cardDesc{
+    color: #5a5c69;
+    font-size: 13px;
+    font-weight: 600;
+}
+.delivery{
+    color: #b80624;
+    font-size: 11px;
+}
+.dist{
+    color: #5a5c69;
+    font-size: 11px
+
+}
