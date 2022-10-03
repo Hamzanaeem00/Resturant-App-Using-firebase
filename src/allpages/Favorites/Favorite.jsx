@@ -33,7 +33,7 @@ function Favorite() {
   content = <p>You got no  Favorites yet. Start Adding Some ?</p>
  }
  else {
-  content = <TestSideBar 
+  content = <Foodcard
    items= {favoritesCtx.favorites}
    />
  }

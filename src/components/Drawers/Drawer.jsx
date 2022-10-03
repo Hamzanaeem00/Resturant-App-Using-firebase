@@ -32,17 +32,18 @@ import { useContext } from "react";
 import FavoritesContext from "../../store/favorites-context";
 import Resturantdetail from "../../allpages/ResturantDetails/Resturantdetail";
 import Admin from "../../allpages/Admins/Admin";
-import { TestSideBar } from "../cards/Foodcard/Foodcard";
-
-
-
-
+import MyCart from "../../allpages/mycart/MyCart";
+import { Container } from "react-bootstrap";
+import {useSelector, useDispatch} from 'react-redux'
+ 
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
+  const getCartQuantity=useSelector((state)=> state.cart.totalQuantity);
+  console.log("getCartQuantity",getCartQuantity);
+  const dispatch = useDispatch();
   const favoritesCtx = useContext(FavoritesContext);
-
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -134,7 +135,6 @@ function ResponsiveDrawer(props) {
         }}
       >
       
- 
         <Toolbar style={{ backgroundColor: "#fff", color: "black", width:'100%'}}>
             
           <IconButton
@@ -143,15 +143,16 @@ function ResponsiveDrawer(props) {
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
-          >
+            >
             <MenuIcon />
           </IconButton>
+              <Container>
           <div className="d-flex justify-content-between">
             <div className="d-flex  justify-content-between">
               <div
                 className="d-flex  justify-content-between"
                 style={{ cursor: "pointer", color: "gray" }}
-              >
+                >
                 <div>
                   <BiCurrentLocation />
                 </div>
@@ -206,15 +207,22 @@ function ResponsiveDrawer(props) {
             >
               <IoFilterSharp style={{ color: "white", fontSize: "20px" }} />
             </div>
+            <Link
+            style={{ textDecoration: "none", color: "gray" }}
+             to="/cart">
             <div
               className="border rounded p-1"
               style={{ backgroundColor: "#CE2642" }}
             >
               <BiShoppingBag style={{ color: "white", fontSize: "20px" }} />
+              <span className="mx-2 badgecart">{getCartQuantity}</span>
             </div>
+            
+            </Link>
           </div>
+        </Container>
         </Toolbar>
-        <TestSideBar />
+        
       </AppBar> 
       
       <Box
@@ -288,8 +296,10 @@ function ResponsiveDrawer(props) {
           </Route>
           <Route path='/admins'>
             <Admin />
-          </Route>
-
+            </Route>
+            <Route>
+            <MyCart />
+            </Route>
         </Switch>
       </Box>
     </Box>

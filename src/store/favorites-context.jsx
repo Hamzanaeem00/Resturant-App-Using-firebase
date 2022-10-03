@@ -1,4 +1,6 @@
-import { createContext,useState } from "react";
+import { createContext,useState } from "react"
+import React from 'react'
+
 
 const FavoritesContext = createContext({
     favorites :[],

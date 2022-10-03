@@ -4,18 +4,20 @@ import FavoritesContext from '../../../store/favorites-context';
 import "./foodcard.css";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
+import { useDispatch } from 'react-redux'
+import { handleCart } from "../../../redux/functions/CartFunction";
+import {useSelector} from 'react-redux'
+
 
 export const TestSideBar = (props) => {
   console.log("props >>>", props);
-
   const favoritesCtx = useContext(FavoritesContext);
-
   const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
   function toogleStatusHandler() {
-    
+
     if (itemIsFavorite) {
       favoritesCtx.removeFavorite(props.id);
-    } 
+    }
     else {
       favoritesCtx.addFavorite({
         id: props.id,
@@ -25,14 +27,16 @@ export const TestSideBar = (props) => {
       });
     }
   }
+
+
   return (
     <div>
-      <Offcanvas 
+      <Offcanvas
         show={props.show}
         onHide={props.handleClose}
         {...props}
         placement={"end"}
-        
+
       >
         <Offcanvas.Header closeButton >
           <Offcanvas.Title>Items</Offcanvas.Title>
@@ -60,12 +64,12 @@ export const TestSideBar = (props) => {
             >
               {" "}
               {itemIsFavorite ? (
-                <BsHeartFill size="1.3em" /> 
+                <BsHeartFill size="1.3em" />
               ) : (
                 <BsHeart size="1.3em" />
               )}
             </button>
-              
+
           </div>
           <div
             className="text-center mt-2"
@@ -110,9 +114,10 @@ export const TestSideBar = (props) => {
                 color: "white",
                 width: "300px",
               }}
+
             >
               {" "}
-              ADD($15.00)
+              Go to Cart
             </button>
           </div>
         </div>
@@ -120,7 +125,8 @@ export const TestSideBar = (props) => {
     </div>
   );
 };
- const Foodcard = (props) => {
+const Foodcard = (props) => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [curruntItem, setCurruntItem] = useState({});
@@ -165,6 +171,14 @@ export const TestSideBar = (props) => {
     getCards();
   }, []);
 
+  const handleAddToCart = (food) => {
+    console.log("food>>>>", food);
+     handleCart(dispatch, food) 
+
+  }
+  
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -177,11 +191,11 @@ export const TestSideBar = (props) => {
       // aria-controls="offcanvasRight"
       >
         {isShow ? (
-          <TestSideBar 
-          //  item={foodcards} 
+          <TestSideBar
+            //  item={foodcards} 
             show={show}
             image={curruntItem.image}
-            id ={curruntItem.id}
+            id={curruntItem.id}
             key={curruntItem.id}
             name={curruntItem.itemName}
           />
@@ -209,8 +223,29 @@ export const TestSideBar = (props) => {
                     />{" "}
                   </div>
                   <div className="d-flex justify-content-between">
-                    
+
                     <div className="mt-3 p-2 foodname" >{food.itemName}</div>
+                    <div>
+                      <button className="border-0"
+                        onClick={() => handleAddToCart(food)}
+                        // onClick={()=> handleRemoveFromCart(food)}
+                        style={{
+                          borderRadius: '6px',
+                          marginTop: "15px",
+                          backgroundColor: "#b80624",
+                          color: "white",
+                          Width: "100px"
+                        }}> 
+                        {handleCart ? 
+                        
+                          'Add to'
+                        : 
+                          "Remove"
+                        } 
+                        </button>
+              
+                        
+                    </div>
                     <div className="mt-3 delivery p-2">Free delivery</div>
                   </div>
                 </div>
