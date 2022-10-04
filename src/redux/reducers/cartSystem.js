@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState={
   cart: [],
-    totalQuantity: 0,
+    value: 0,
     isFetching: false,
     error: false,
 };
@@ -36,13 +36,38 @@ const initialState={
       state.cart = deleteItem; 
    },
 
-   cartQuantity:(state)=>{
-     let totalQuantity = state.cart.length+1;
-     console.log("totalCartQuantity>>>",totalQuantity);
-   }
-    // increment:  (state)=>{
-    //   state.value +=1;
-    // },
+  //  cartQuantity:(state)=>{
+  //    let totalQuantity= state.cart.length;
+  //    console.log("cartLength>>>>",totalQuantity);
+  //   },
+    incrementSuccess:  (state, action)=>{
+      state.isFetching = false 
+      const incrementValue = state.value +=1
+      console.log("incrementValue>>>>",incrementValue);
+    },
+    incrementStart: (state) =>{
+      state.isFetching = true
+      state.error = false ;
+    },
+    incrementFailure: (state) =>{
+      state.isFetching = false
+      state.error = true ;
+    },
+
+
+    decrementSuccess:  (state, action)=>{
+      state.isFetching = false 
+      const incrementValue = state.value -=1
+      console.log("decrementValue>>>>",incrementValue);
+    },
+    decrementStart: (state) =>{
+      state.isFetching = true
+      state.error = false ;
+    },
+    decrementFailure: (state) =>{
+      state.isFetching = false
+      state.error = true ;
+    },
     // decrement:(state)=>{
     //   state.value -=1
     // },
@@ -56,5 +81,6 @@ const initialState={
 });
 console.log("cartSystem>>>>",cartSystem);
 
-export const { AddCartStart, AddCartSuccess, AddCartFailure, increment, decrement, incrementByAmount, RemoveItem, cartQuantity} = cartSystem.actions;
+export const { AddCartStart, AddCartSuccess, AddCartFailure, incrementSuccess, incrementStart, 
+  incrementFailure, RemoveItem, decrementFailure, decrementStart, decrementSuccess} = cartSystem.actions;
 export default cartSystem.reducer

@@ -35,13 +35,15 @@ import Admin from "../../allpages/Admins/Admin";
 import MyCart from "../../allpages/mycart/MyCart";
 import { Container } from "react-bootstrap";
 import {useSelector, useDispatch} from 'react-redux'
+import { cartQuantity } from "../../redux/reducers/cartSystem";
  
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
-  const getCartQuantity=useSelector((state)=> state.cart.totalQuantity);
+  const getCartQuantity=useSelector((state)=> state.cart.value);
   console.log("getCartQuantity",getCartQuantity);
+  
   const dispatch = useDispatch();
   const favoritesCtx = useContext(FavoritesContext);
   const { window } = props;
@@ -215,7 +217,7 @@ function ResponsiveDrawer(props) {
               style={{ backgroundColor: "#CE2642" }}
             >
               <BiShoppingBag style={{ color: "white", fontSize: "20px" }} />
-              <span className="mx-2 badgecart">{getCartQuantity}</span>
+              <span className=" badgecart">{getCartQuantity}</span>
             </div>
             
             </Link>

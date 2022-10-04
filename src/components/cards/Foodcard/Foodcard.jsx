@@ -6,11 +6,12 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch } from 'react-redux'
 import { handleCart } from "../../../redux/functions/CartFunction";
-import {useSelector} from 'react-redux'
 
 
 export const TestSideBar = (props) => {
   console.log("props >>>", props);
+  const [isOpen, setIsOpen] = useState(true);
+  const dispatch = useDispatch();
   const favoritesCtx = useContext(FavoritesContext);
   const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
   function toogleStatusHandler() {
@@ -27,16 +28,22 @@ export const TestSideBar = (props) => {
       });
     }
   }
-
+ 
+  const handleAddToCart = (food) => {
+    console.log("food2>>>>", food);
+     handleCart(dispatch, food) 
+     setIsOpen(!isOpen);
+  }
 
   return (
     <div>
+    {isOpen && (
       <Offcanvas
-        show={props.show}
-        onHide={props.handleClose}
-        {...props}
-        placement={"end"}
-
+      show={props.show}
+      onHide={props.handleClose}
+      {...props}
+      placement={"end"}
+      
       >
         <Offcanvas.Header closeButton >
           <Offcanvas.Title>Items</Offcanvas.Title>
@@ -48,7 +55,7 @@ export const TestSideBar = (props) => {
               src={props.image}
               alt=""
               width="400px"
-            />
+              />
           </div>
           <div>
             {" "}
@@ -61,20 +68,20 @@ export const TestSideBar = (props) => {
                 fontSize: "14px",
                 transform: "translate(300px, -240px)",
               }}
-            >
+              >
               {" "}
               {itemIsFavorite ? (
                 <BsHeartFill size="1.3em" />
-              ) : (
-                <BsHeart size="1.3em" />
-              )}
+                ) : (
+                  <BsHeart size="1.3em" />
+                  )}
             </button>
 
           </div>
           <div
             className="text-center mt-2"
             style={{ fontSize: "24px", fontWeight: "bold" }}
-          >
+            >
             {props.name}
           </div>
           <p className="" style={{ fontSize: "13px", color: "gray" }}>
@@ -87,7 +94,7 @@ export const TestSideBar = (props) => {
               <button
                 className="p-1 border-0 rounded"
                 style={{ backgroundColor: "#b80624", color: "white" }}
-              >
+                >
                 Required
               </button>
             </div>
@@ -107,24 +114,28 @@ export const TestSideBar = (props) => {
             </div>
           </div>
           <div className="my-5 text-center  ">
-            <button
+            <button 
               className="p-2 border-0 rounded text-center"
               style={{
                 backgroundColor: "#b80624",
                 color: "white",
                 width: "300px",
               }}
-
-            >
+              onClick={() => handleAddToCart(props)}
+              
+              >
               {" "}
-              Go to Cart
+              Add to Cart
             </button>
           </div>
         </div>
       </Offcanvas>
-    </div>
-  );
+      )
+    }
+      </div>
+      );
 };
+
 const Foodcard = (props) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -171,11 +182,11 @@ const Foodcard = (props) => {
     getCards();
   }, []);
 
-  const handleAddToCart = (food) => {
-    console.log("food>>>>", food);
-     handleCart(dispatch, food) 
+  // const handleAddToCart = (food) => {
+  //   console.log("food>>>>", food);
+  //    handleCart(dispatch, food) 
 
-  }
+  // }
   
 
 
@@ -225,26 +236,7 @@ const Foodcard = (props) => {
                   <div className="d-flex justify-content-between">
 
                     <div className="mt-3 p-2 foodname" >{food.itemName}</div>
-                    <div>
-                      <button className="border-0"
-                        onClick={() => handleAddToCart(food)}
-                        // onClick={()=> handleRemoveFromCart(food)}
-                        style={{
-                          borderRadius: '6px',
-                          marginTop: "15px",
-                          backgroundColor: "#b80624",
-                          color: "white",
-                          Width: "100px"
-                        }}> 
-                        {handleCart ? 
-                        
-                          'Add to'
-                        : 
-                          "Remove"
-                        } 
-                        </button>
-              
-                        
+                    <div> 
                     </div>
                     <div className="mt-3 delivery p-2">Free delivery</div>
                   </div>
