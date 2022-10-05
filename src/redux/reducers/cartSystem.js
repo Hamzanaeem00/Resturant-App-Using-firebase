@@ -42,9 +42,14 @@ const initialState={
   //   },
     incrementSuccess:  (state, action)=>{
       state.isFetching = false 
-      const incrementValue = state.value +=1
-      console.log("incrementValue>>>>",incrementValue);
+      // let payload = action.payload
+      // console.log( "value actionpayload >>> " , payload );
+      const incrementValue = state.cart.find((cartItem)=> (cartItem.id === action.payload.id) ? state.value++ : "")
+      // console.log("incrementValue>>>>",incrementValue);
+      // incrementValue.value = incrementValue.value +1;
+      // state.cart[incrementValue].value +=1
     },
+    
     incrementStart: (state) =>{
       state.isFetching = true
       state.error = false ;
@@ -57,8 +62,17 @@ const initialState={
 
     decrementSuccess:  (state, action)=>{
       state.isFetching = false 
-      const incrementValue = state.value -=1
-      console.log("decrementValue>>>>",incrementValue);
+      const decrementValue = state.cart.findIndex((cartItem)=> (cartItem.id === action.payload.id)? state.value -- : "")
+      console.log("decrementValue>>>>",decrementValue);
+      // if (state.cart[decrementValue].value >1){
+      //   state.cart[decrementValue].value -=1
+      // } else
+       if(state.value === 0){
+      const deleteItem = state.cart.filter((cartItem)=> cartItem.id !==  action.payload.id)
+           
+      }
+      
+      
     },
     decrementStart: (state) =>{
       state.isFetching = true

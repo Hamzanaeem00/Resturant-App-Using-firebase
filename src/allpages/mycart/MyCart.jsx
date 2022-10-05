@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { handleCart, handleDecrementValue, handleIncrementValue, RemoveFromCart } from '../../redux/functions/CartFunction';
-import { RemoveItem } from '../../redux/reducers/cartSystem';
+import { decrementSuccess, incrementSuccess, RemoveItem } from '../../redux/reducers/cartSystem';
 import Header from '../../components/header/Header';
 import { MdDelete } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -13,7 +13,7 @@ function MyCart() {
         console.log("state>>", state);
     })
     const count = useSelector((state) => state.cart.value)
-    console.log("value>>>",count);
+    console.log("value>>>",count);  
 
     const getCartData = useSelector(state => state.cart.cart);
     console.log("getCartData>>", getCartData);
@@ -25,13 +25,16 @@ function MyCart() {
         
         }
         
-        const toggleIncrementValue = () => {
-            console.log("count>>>", count);
-            handleIncrementValue(dispatch, count)
+        const toggleIncrementValue = (count) => {
+            console.log("increasedValue", count);
+            handleIncrementValue(dispatch,count)
+            
+            
     }
-    const toggleDecrementValue = () => {
-        console.log("count>>>", count);
-        handleDecrementValue(dispatch, count)
+    const toggleDecrementValue = (count) => {
+        console.log("decresed value>>>",count);
+          handleDecrementValue(dispatch, count)
+
 }
 
     return (
@@ -68,14 +71,12 @@ function MyCart() {
 
                                         <div className="mt-3 p-2 foodname" >{food.payload.name}</div>
 
-
-
                                         <div className="mt-3 delivery p-2">Free delivery</div>
                                     </div>
                                 </div>
                             </div>
                             <div className='w-25 text-center my-5'>
-                                Price
+                                {food.payload.price}
                             </div>
                             <div className='w-25 text-center my-5'>
                                 <div>
@@ -86,8 +87,8 @@ function MyCart() {
                                             color: "white",
                                         }}
                                             aria-label="Increment value"
-                                        //   onClick={() => toggleIncrementValue()}
-                                         onClick={() => toggleIncrementValue()}
+                                        
+                                         onClick={() => toggleIncrementValue(count)}
     
                                         >
                                             <AiOutlinePlus color='white' size='1.5em'/>
@@ -99,8 +100,8 @@ function MyCart() {
                                             color: "white",
                                         }}
                                             aria-label="Decrement value"
-                                        //   onClick={() => dispatch(decrement())}
-                                        onClick={()=> toggleDecrementValue()}
+                                    
+                                        onClick={()=> toggleDecrementValue(count)}
                                         >
                                             <AiOutlineMinus  color='white' size='1.5em'/>
                                         </button>

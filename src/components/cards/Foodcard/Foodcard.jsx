@@ -89,13 +89,14 @@ export const TestSideBar = (props) => {
             vegetables
           </p>
           <div className="d-flex justify-content-between mt-4">
-            <div>Pizza Choice</div>
+            <div>Pizza Price</div>
             <div>
               <button
                 className="p-1 border-0 rounded"
                 style={{ backgroundColor: "#b80624", color: "white" }}
                 >
-                Required
+                {props.price}
+                
               </button>
             </div>
           </div>
@@ -209,6 +210,7 @@ const Foodcard = (props) => {
             id={curruntItem.id}
             key={curruntItem.id}
             name={curruntItem.itemName}
+            price = {curruntItem.itemPrice}
           />
         ) : null}
         <div
@@ -236,7 +238,10 @@ const Foodcard = (props) => {
                   <div className="d-flex justify-content-between">
 
                     <div className="mt-3 p-2 foodname" >{food.itemName}</div>
-                    <div> 
+                    <div className="mt-3" style={{color: '#c60021', fontWeight:'700'}}> 
+                      <div>
+                        {food.itemPrice}
+                      </div>
                     </div>
                     <div className="mt-3 delivery p-2">Free delivery</div>
                   </div>

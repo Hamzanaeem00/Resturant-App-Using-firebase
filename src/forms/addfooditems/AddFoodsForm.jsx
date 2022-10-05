@@ -6,17 +6,20 @@ const AddFoodsForm = (props) => {
 const imageInputRef = useRef();
 const itemNameInuputRef = useRef();
 const itemTypeInuputRef = useRef();
+const itemPriceInputRef = useRef();
 
 function SubmitHandler(event){
     event.preventDefault();
     const enteredImage =   imageInputRef.current.value;
     const enteredItemName = itemNameInuputRef.current.value;
     const enteredItemType = itemTypeInuputRef.current.value;
+    const enteredItemPrice = itemPriceInputRef.current.value;
 
     const FooditemData = {
         image: enteredImage ,
         itemName: enteredItemName,
         itemType: enteredItemType,
+        itemPrice: enteredItemPrice
         
     }
     // console.log(FooditemData);
@@ -73,6 +76,21 @@ function SubmitHandler(event){
             id="item"
           ref={itemNameInuputRef}/>
         </div>
+        <div className="p-1 mt-2">
+          <label className="" htmlFor="itemName">
+            Item Price{" "}
+          </label>{" "}
+        </div>
+        <div>
+          <input
+            className="wd-100% rounded border-1"
+            style={{ backgroundColor: "", width: "100%" }}
+            type="text"
+            name=""
+            id="item"
+          ref={itemPriceInputRef}/>
+        </div>
+        
         <div className="p-1 mt-2">
           <label className="" htmlFor="itemName">
             Item Type{" "}
