@@ -34,7 +34,6 @@ function MyCart() {
     const toggleDecrementValue = (count) => {
         console.log("decresed value>>>",count);
           handleDecrementValue(dispatch, count)
-
 }
 
     return (
