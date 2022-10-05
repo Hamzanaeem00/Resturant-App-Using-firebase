@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState={
   cart: [],
-    value: 0,
+    value: 1,
     isFetching: false,
     error: false,
 };
@@ -31,8 +31,8 @@ const initialState={
     },
    RemoveItem: (state, action)=>{
     console.log("removeitemAction",action);
-      // const deleteItem = state.cart.filter((item)=> item.id !==  action.payload.id)
-      const deleteItem = state.cart.splice(1, state.cart.length)
+      const deleteItem = state.cart.filter((item)=> item.id !==  action.payload.id)
+      // const deleteItem = state.cart.splice(1, state.cart.length)
       state.cart = deleteItem; 
    },
 
@@ -42,12 +42,7 @@ const initialState={
   //   },
     incrementSuccess:  (state, action)=>{
       state.isFetching = false 
-      // let payload = action.payload
-      // console.log( "value actionpayload >>> " , payload );
       const incrementValue = state.cart.find((cartItem)=> (cartItem.id === action.payload.id) ? state.value++ : "")
-      // console.log("incrementValue>>>>",incrementValue);
-      // incrementValue.value = incrementValue.value +1;
-      // state.cart[incrementValue].value +=1
     },
     
     incrementStart: (state) =>{
@@ -67,7 +62,7 @@ const initialState={
       // if (state.cart[decrementValue].value >1){
       //   state.cart[decrementValue].value -=1
       // } else
-       if(state.value === 0){
+       if(state.value === 1){
       const deleteItem = state.cart.filter((cartItem)=> cartItem.id !==  action.payload.id)
            
       }
