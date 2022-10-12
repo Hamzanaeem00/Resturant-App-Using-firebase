@@ -12,21 +12,21 @@ export const handleCart = async (dispatch, inputData) => {
      
   };
   
-   export  const  handleIncrementValue = async (dispatch, cartItem )=>{
+   export  const  handleIncrementValue = async (dispatch, item )=>{
     dispatch(incrementStart());
     try {
-      console.log("increment data from toggleincrement >>",cartItem);
-      dispatch(incrementSuccess(cartItem));
+      console.log("increment data from toggleincrement >>",item);
+      dispatch(incrementSuccess(item));
     } catch (err) {  
       console.log("error from catch", err);  
       dispatch(incrementFailure());
     } 
   }
-  export  const  handleDecrementValue = async (dispatch, cartItem )=>{
+  export  const  handleDecrementValue = async (dispatch, item )=>{
     dispatch(decrementStart());
     try {
-      console.log("decrement value from toggledecrement>>",cartItem);
-      dispatch(decrementSuccess(cartItem));
+      console.log("decrement value from toggledecrement>>",item);
+      dispatch(decrementSuccess(item));
     } catch (err) {  
       console.log("error from catch", err);  
       dispatch(decrementFailure());

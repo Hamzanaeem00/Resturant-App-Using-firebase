@@ -8,7 +8,7 @@ const Admin = () => {
  
     function addFoodCard(FooditemData){
         
-      fetch('https://react-restaurant-database-default-rtdb.firebaseio.com/FoodCards.json',
+      fetch('https://restaurant-app-abfe9-default-rtdb.firebaseio.com/FoodCards.json',
         {
             method: 'POST',
             body: JSON.stringify(FooditemData),

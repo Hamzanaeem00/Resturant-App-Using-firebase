@@ -9,33 +9,30 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 function MyCart() {
     const dispatch = useDispatch();
-    useSelector((state) => {
-        console.log("state>>", state);
-    })
+    // useSelector((state) => {
+    //  console.log("state>>", state);
+    // })
     const count = useSelector((state) => state.cart.value)
-    console.log("value>>>",count);  
+    console.log("count>>>",count);  
 
     const getCartData = useSelector(state => state.cart.cart);
     console.log("getCartData>>", getCartData);
 
-    const RemoveItemhandler = (food) => {
-        console.log("remove item>>>", food);
-        dispatch(RemoveItem(food.payload.id))
+    const RemoveItemhandler = (id) => {
+        console.log("remove item>>>", id);
+        dispatch(RemoveItem(id))
 
-        
         }
         
         const toggleIncrementValue = (count) => {
             console.log("increasedValue", count);
-            handleIncrementValue(dispatch,count)
-            
-            
+            handleIncrementValue(dispatch, count)
+
     }
     const toggleDecrementValue = (count) => {
         console.log("decresed value>>>",count);
-        if (count===1){
-            dispatch(RemoveItem())
-
+        if (count === 1){
+        dispatch(RemoveItem())   
         }
           handleDecrementValue(dispatch, count)
 }
@@ -52,7 +49,7 @@ function MyCart() {
                 style={{ cursor: "pointer" }}
                 variant="primary"
             >
-                {getCartData.map((food) => {
+                {getCartData.map((food, index) => {
                     return (
                         <div className=" border-0 rounded  w-100 d-flex p-3 border-0 rounded "
                         >
@@ -127,7 +124,7 @@ function MyCart() {
                                             fontSize: "15px"
                                         }}
 
-                                        onClick={() => RemoveItemhandler(food)}
+                                        onClick={() => RemoveItemhandler(index)}
                                     // onClick={()=> { dispatch (RemoveItem(food))}}
                                     > <MdDelete size='1.8em' /> </button>
                                 </div>

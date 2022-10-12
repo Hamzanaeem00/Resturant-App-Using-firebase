@@ -35,14 +35,15 @@ import Admin from "../../allpages/Admins/Admin";
 import MyCart from "../../allpages/mycart/MyCart";
 import { Container } from "react-bootstrap";
 import {useSelector, useDispatch} from 'react-redux'
-import { cartQuantity } from "../../redux/reducers/cartSystem";
+
  
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
-  const getCartQuantity=useSelector((state)=> state.cart.value);
-  console.log("getCartQuantity",getCartQuantity);
+  
+const getCartQuantity = useSelector((state)=> state.cart.cart.length)
+console.log("cartQuantity",getCartQuantity);
   
   const dispatch = useDispatch();
   const favoritesCtx = useContext(FavoritesContext);

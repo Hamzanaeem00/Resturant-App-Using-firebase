@@ -156,7 +156,7 @@ const Foodcard = (props) => {
   const [loading, setLoading] = useState(true);
   const getCards = () => {
     fetch(
-      "https://react-restaurant-database-default-rtdb.firebaseio.com/FoodCards.json"
+      "https://restaurant-app-abfe9-default-rtdb.firebaseio.com/FoodCards.json"
     )
       // const  data = await response.json(())
       // console.log(data)

@@ -31,18 +31,22 @@ const initialState={
     },
    RemoveItem: (state, action)=>{
     console.log("removeitemAction",action);
-      const deleteItem = state.cart.filter((item)=> item.id !==  action.payload.id)
+      const deleteItem = state.cart.filter((item, index)=> {
+        console.log("itemId>>>",item);
+       return index !== action.payload
+       
+      })    
       // const deleteItem = state.cart.splice(1, state.cart.length)
-      state.cart = deleteItem; 
+      state.cart = deleteItem;
+      console.log("Remaining Item>>>",deleteItem);                 
    },
-
-  //  cartQuantity:(state)=>{
-  //    let totalQuantity= state.cart.length;
-  //    console.log("cartLength>>>>",totalQuantity);
-  //   },
     incrementSuccess:  (state, action)=>{
       state.isFetching = false 
-      const incrementValue = state.cart.find((cartItem)=> (cartItem.id === action.payload.id) ? state.value++ : "")
+      // const incrementValue = state.cart.find((item)=> (item === action.payload) ? state.value++ : "")
+      const incrementValue = state.cart.find((item)=>{
+        return ((item.id===action.payload.id )? state.value++  :"")
+
+      })
     },
     
     incrementStart: (state) =>{
@@ -53,19 +57,17 @@ const initialState={
       state.isFetching = false
       state.error = true ;
     },
-
-
     decrementSuccess:  (state, action)=>{
       state.isFetching = false 
-      const decrementValue = state.cart.findIndex((cartItem)=> (cartItem.id === action.payload.id)? state.value -- : "")
-      console.log("decrementValue>>>>",decrementValue);
-      // if (state.cart[decrementValue].value >1){
-      //   state.cart[decrementValue].value -=1
-      // } else
-       if(state.value === 1){
-      const deleteItem = state.cart.filter((cartItem)=> cartItem.id !==  action.payload.id)
-           
-      }
+      const decrementValue = state.cart.find((item)=> {
+
+        return (((item.id === action.payload.id)? state.value-- :"") ) 
+      })
+      console.log("decrementValue>>>>", decrementValue);
+      //  if(state.value === 1){
+      // const deleteItem = state.cart.filter((item)=> item.id !==  action.payload.id)   
+         
+      // }   
       
       
     },
