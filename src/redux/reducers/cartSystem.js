@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState={
   cart: [],
     value: 1,
+    total:0,
+   
     isFetching: false,
     error: false,
 };
@@ -17,6 +19,7 @@ const initialState={
 
       let payload = action.payload
       console.log("payload>>>>>",payload);
+    
       state.cart.push({
         payload,
       });
@@ -44,7 +47,7 @@ const initialState={
       state.isFetching = false 
       // const incrementValue = state.cart.find((item)=> (item === action.payload) ? state.value++ : "")
       const incrementValue = state.cart.find((item)=>{
-        return ((item.id===action.payload.id )? state.value++  :"")
+        return ((item.id===action.payload.id)? state.value++  :"")
 
       })
     },
@@ -64,10 +67,7 @@ const initialState={
         return (((item.id === action.payload.id)? state.value-- :"") ) 
       })
       console.log("decrementValue>>>>", decrementValue);
-      //  if(state.value === 1){
-      // const deleteItem = state.cart.filter((item)=> item.id !==  action.payload.id)   
-         
-      // }   
+      
       
       
     },
@@ -79,19 +79,29 @@ const initialState={
       state.isFetching = false
       state.error = true ;
     },
-    // decrement:(state)=>{
-    //   state.value -=1
-    // },
-    // incrementByAmount:(state, action) =>{
-    //   state.value +=action.payload
-    // },
 
+
+    calculateTotals: (state)=>{
+      let value = 0
+      let total = 0
+      state.cart.forEach((item)=>{
+        value += item.value
+        total += item.value*item.price
+        console.log("price",total);
+      })
+      state.value = value;
+      state.total = total;
+    }
+
+    }
+    
   }
 
+
   
-});
+);
 console.log("cartSystem>>>>",cartSystem);
 
 export const { AddCartStart, AddCartSuccess, AddCartFailure, incrementSuccess, incrementStart, 
-  incrementFailure, RemoveItem, decrementFailure, decrementStart, decrementSuccess} = cartSystem.actions;
+  incrementFailure, RemoveItem, decrementFailure, decrementStart, decrementSuccess, priceHandling, calculateTotals} = cartSystem.actions;
 export default cartSystem.reducer

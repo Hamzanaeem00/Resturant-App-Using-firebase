@@ -1,4 +1,4 @@
-import { AddCartFailure, AddCartStart, AddCartSuccess, decrementFailure, decrementStart, decrementSuccess, incrementFailure, incrementStart, incrementSuccess, } from "../reducers/cartSystem";
+import { AddCartFailure, AddCartStart, AddCartSuccess, decrementFailure, decrementStart, decrementSuccess, incrementFailure, incrementStart, incrementSuccess, priceHandling, } from "../reducers/cartSystem";
 
 export const handleCart = async (dispatch, inputData) => {
     dispatch(AddCartStart());
@@ -32,7 +32,12 @@ export const handleCart = async (dispatch, inputData) => {
       dispatch(decrementFailure());
     } 
   }
+    // export const handlePriceValue = async  (dispatch, price)=>{
+    //          console.log("price in array>>",price);
+    //          dispatch(priceHandling(price))
+    // }
   
+    
   // export const RemoveFromCart = async (dispatch, id) =>{
   //   dispatch(RemoveItem(id))
   //   console.log("id>>>",id);

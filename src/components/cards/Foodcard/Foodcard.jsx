@@ -240,7 +240,7 @@ const Foodcard = (props) => {
                     <div className="mt-3 p-2 foodname" >{food.itemName}</div>
                     <div className="mt-3" style={{color: '#c60021', fontWeight:'700'}}> 
                       <div>
-                        {food.itemPrice}
+                       { `${food.itemPrice}$`}
                       </div>
                     </div>
                     <div className="mt-3 delivery p-2">Free delivery</div>
