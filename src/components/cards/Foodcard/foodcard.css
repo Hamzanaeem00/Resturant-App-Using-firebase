@@ -9,3 +9,9 @@
     color: #b80624;
     font-size: 13px;
 }
+.offcanvas {
+    z-index: 2000; /* Or any value higher than the MUI Drawer */
+  }
+/* .css-hyum1k-MuiToolbar-root{
+display: none !important;
+} */
