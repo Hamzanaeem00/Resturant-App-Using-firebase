@@ -6,6 +6,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch } from 'react-redux'
 import { handleCart } from "../../../redux/functions/CartFunction";
+import Home from "../../../allpages/homes/Home";
 
 
 export const TestSideBar = (props) => {
@@ -38,14 +39,15 @@ export const TestSideBar = (props) => {
   return (
     <div>
     {isOpen && (
-      <Offcanvas
+      <Offcanvas 
       show={props.show}
       onHide={props.handleClose}
       {...props}
       placement={"end"}
+      className={`${props.show? "":""}`}
       
       >
-        <Offcanvas.Header closeButton >
+        <Offcanvas.Header closeButton  >
           <Offcanvas.Title>Items</Offcanvas.Title>
         </Offcanvas.Header>
         <div className="offcanvas-body">
@@ -137,26 +139,29 @@ export const TestSideBar = (props) => {
       );
 };
 
-const Foodcard = (props) => {
-  const dispatch = useDispatch();
+const Foodcard = () => { 
+  // const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(true);
   const [curruntItem, setCurruntItem] = useState({});
+  console.log("curruntItem==>", curruntItem);
 
-  const handleClose = () => setShow(false);
   const handleShow = (food) => {
     console.log("on click", food);
-    // setShow(true);
-    setShow((preValue) => !preValue);
-    setIsShow((preValue) => !preValue);
+    // setShow((preValue) => !preValue);
+    setShow(true);
+    setIsShow(true);
+    // setIsShow((preValue) => !preValue);
     setCurruntItem(food);
   };
+  const handleClose = () => setShow(false);
 
-  const [foodcards, setFoodCards] = useState([]);
+  const [foodCards, setFoodCards] = useState([]);
+  console.log("foodCards==>",foodCards);
   const [loading, setLoading] = useState(true);
   const getCards = () => {
     fetch(
-      "https://restaurant-app-abfe9-default-rtdb.firebaseio.com/FoodCards.json"
+      "https://react-resturant-website-default-rtdb.firebaseio.com/FoodCards.json"
     )
       // const  data = await response.json(())
       // console.log(data)
@@ -186,7 +191,6 @@ const Foodcard = (props) => {
   // const handleAddToCart = (food) => {
   //   console.log("food>>>>", food);
   //    handleCart(dispatch, food) 
-
   // }
   
 
@@ -197,20 +201,18 @@ const Foodcard = (props) => {
 
   return (
     <div>
-      <div
-      // data-bs-toggle="offcanvas"
-      // data-bs-target="#offcanvasRight"
-      // aria-controls="offcanvasRight"
-      >
+      <div>
         {isShow ? (
           <TestSideBar
             //  item={foodcards} 
             show={show}
+            handleClose = {handleClose}
             image={curruntItem.image}
             id={curruntItem.id}
             key={curruntItem.id}
             name={curruntItem.itemName}
             price = {curruntItem.itemPrice}
+
           />
         ) : null}
         <div
@@ -218,7 +220,7 @@ const Foodcard = (props) => {
           style={{ cursor: "pointer" }}
           variant="primary"
         >
-          {foodcards.map((food) => {
+          {foodCards.map((food) => {
             return (
               <div
                 className="col-lg-4 col-md-4 col-sm-6 "
