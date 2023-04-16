@@ -6,13 +6,17 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch } from 'react-redux'
 import { handleCart } from "../../../redux/functions/CartFunction";
-import Home from "../../../allpages/homes/Home";
 
 
 export const TestSideBar = (props) => {
   console.log("props >>>", props);
   const [isOpen, setIsOpen] = useState(true);
+  const [show, setShow] = useState(false);
+
   const dispatch = useDispatch();
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const favoritesCtx = useContext(FavoritesContext);
   const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
   function toogleStatusHandler() {
@@ -20,6 +24,7 @@ export const TestSideBar = (props) => {
     if (itemIsFavorite) {
       favoritesCtx.removeFavorite(props.id);
     }
+
     else {
       favoritesCtx.addFavorite({
         id: props.id,
@@ -29,6 +34,7 @@ export const TestSideBar = (props) => {
       });
     }
   }
+
  
   const handleAddToCart = (food) => {
     console.log("food2>>>>", food);
@@ -39,9 +45,10 @@ export const TestSideBar = (props) => {
   return (
     <div>
     {isOpen && (
-      <Offcanvas 
-      show={props.show}
-      onHide={props.handleClose}
+      <Offcanvas  onHide={handleClose}  
+      // show={props.show}
+        show={show}
+      // onHide={props.handleClose}
       {...props}
       placement={"end"}
       className={`${props.show? "":""}`}
@@ -127,7 +134,7 @@ export const TestSideBar = (props) => {
               onClick={() => handleAddToCart(props)}
               
               >
-              {" "}
+              {" "} 
               Add to Cart
             </button>
           </div>
@@ -155,6 +162,7 @@ const Foodcard = () => {
     setCurruntItem(food);
   };
   const handleClose = () => setShow(false);
+  const handleOpen = () => setShow(true);
 
   const [foodCards, setFoodCards] = useState([]);
   console.log("foodCards==>",foodCards);

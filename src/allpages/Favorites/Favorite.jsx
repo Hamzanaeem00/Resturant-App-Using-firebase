@@ -11,7 +11,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CardsResturants from '../../components/cards/CardsResturants';
-import Foodcard, { TestSideBar } from '../../components/cards/Foodcard/Foodcard';
+import  { TestSideBar } from '../../components/cards/Foodcard/Foodcard';
 
 
 

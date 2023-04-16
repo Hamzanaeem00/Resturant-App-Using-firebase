@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { handleCart, handleDecrementValue, handleIncrementValue, handlePriceValue, RemoveFromCart } from '../../redux/functions/CartFunction';
-import { calculateTotals, RemoveItem } from '../../redux/reducers/cartSystem';
+import { handleDecrementValue, handleIncrementValue } from '../../redux/functions/CartFunction';
+import { RemoveItem } from '../../redux/reducers/cartSystem';
 import Header from '../../components/header/Header';
 import { MdDelete } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";

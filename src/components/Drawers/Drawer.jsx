@@ -34,7 +34,7 @@ import Resturantdetail from "../../allpages/ResturantDetails/Resturantdetail";
 import Admin from "../../allpages/Admins/Admin";
 import MyCart from "../../allpages/mycart/MyCart";
 import { Container } from "react-bootstrap";
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 
  
 
@@ -45,7 +45,6 @@ function ResponsiveDrawer(props) {
 const getCartQuantity = useSelector((state)=> state.cart.cart.length)
 console.log("cartQuantity",getCartQuantity);
   
-  const dispatch = useDispatch();
   const favoritesCtx = useContext(FavoritesContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);

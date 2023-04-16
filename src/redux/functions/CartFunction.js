@@ -1,4 +1,4 @@
-import { AddCartFailure, AddCartStart, AddCartSuccess, decrementFailure, decrementStart, decrementSuccess, incrementFailure, incrementStart, incrementSuccess, priceHandling, } from "../reducers/cartSystem";
+import { AddCartFailure, AddCartStart, AddCartSuccess, decrementFailure, decrementStart, decrementSuccess, incrementFailure, incrementStart, incrementSuccess } from "../reducers/cartSystem";
 
 export const handleCart = async (dispatch, inputData) => {
     dispatch(AddCartStart());
