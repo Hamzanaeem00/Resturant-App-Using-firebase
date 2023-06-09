@@ -8,7 +8,7 @@ const Admin = () => {
  
     function addFoodCard(FooditemData){
         
-      fetch('https://react-resturant-website-default-rtdb.firebaseio.com/FoodCards.json',
+      fetch('https://restaurant-data-5fe4f-default-rtdb.firebaseio.com/FoodCards.json',
         {
             method: 'POST',
             body: JSON.stringify(FooditemData),
@@ -21,6 +21,8 @@ const Admin = () => {
         });
 
     }
+
+    
   return (
     <div>
       <AddFoodsForm  onAddFoods ={addFoodCard}/>

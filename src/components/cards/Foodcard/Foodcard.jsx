@@ -15,7 +15,6 @@ export const TestSideBar = (props) => {
 
   const dispatch = useDispatch();
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const favoritesCtx = useContext(FavoritesContext);
   const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
@@ -162,18 +161,14 @@ const Foodcard = () => {
     setCurruntItem(food);
   };
   const handleClose = () => setShow(false);
-  const handleOpen = () => setShow(true);
 
   const [foodCards, setFoodCards] = useState([]);
   console.log("foodCards==>",foodCards);
   const [loading, setLoading] = useState(true);
-  const getCards = () => {
+  const getCards =  () => {
     fetch(
-      "https://react-resturant-website-default-rtdb.firebaseio.com/FoodCards.json"
+      "https://restaurant-data-5fe4f-default-rtdb.firebaseio.com/FoodCards.json"
     )
-      // const  data = await response.json(())
-      // console.log(data)
-      // setFoodCards(await response.json());
       .then((response) => {
         return response.json();
       })
